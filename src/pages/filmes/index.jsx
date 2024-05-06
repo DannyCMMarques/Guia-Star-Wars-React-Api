@@ -10,21 +10,23 @@ import { Col } from "react-bootstrap";
 const Filme = () => {
   // const { apiResponse, isLoading } = ApiAssistent();
 
- const teste= [{
-  "title": "A New Hope",
-  "episode_id": 4,
-  "opening_crawl": "esse é o resumo 1"
- }, {
-  "title": "The Empire Strikes Back",
-  "episode_id": 5,
-  "opening_crawl": "esse e o resumo 2"
-
- },
-{
-  "title": "Return of the Jedi",
-  "episode_id": 6,
-  "opening_crawl": "ele voltou" 
-}]
+  const teste = [
+    {
+      title: "A New Hope",
+      episode_id: 4,
+      opening_crawl: "esse é o resumo 1",
+    },
+    {
+      title: "The Empire Strikes Back",
+      episode_id: 5,
+      opening_crawl: "esse e o resumo 2",
+    },
+    {
+      title: "Return of the Jedi",
+      episode_id: 6,
+      opening_crawl: "ele voltou",
+    },
+  ];
   const { getStarWars } = MovieService();
   const [apiResponse, setApiResponse] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -36,81 +38,62 @@ const Filme = () => {
     // console.log(currentPath);
 
     try {
-      console.log("entrei");
       const response = await getStarWars();
-      console.log(response);
-      console.log(response.data.results);
       setApiResponse(response.data.results);
-      console.log(apiResponse);
-      console.log(setApiResponse);
-      console.log(apiResponse[1].title);
-
-      //   console.log("testedomap" + apiResponse)
-      //  console.log("esse é o api response" +setApiResponse)
-
-      
-      console.log("passou a muralha");
     } catch (error) {
       console.log("Error fetching Star Wars data:", error);
     }
-    
+
     setIsLoading(false);
   }, [getStarWars]);
 
   useEffect(() => {
     getListStarwars();
   }, []);
- console.log(apiResponse)
+
   return (
     <Container>
       <Row>
-        {
-          isLoading ? (
-            <div>
-              <Spinner
-                animation="border"
-                variant="danger"
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "200px",
-                  height: "200px",
-                  margin: "auto",
-                  marginTop: "auto",
-                  // height:"100vh",
-                  // width:"100vw"
-                }}
+        {isLoading ? (
+          <div>
+            <Spinner
+              animation="border"
+              variant="danger"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "200px",
+                height: "200px",
+                margin: "auto",
+                marginTop: "auto",
+                // height:"100vh",
+                // width:"100vw"
+              }}
+            />
+          </div>
+        ) : (
+          <div style={{ display: "contents" }}>
+            {apiResponse.map((film) => (
+              //
+
+              <CardsModal
+                key={film.episode_id}
+                imagem={film.imagem}
+                titulo={film.title}
+                tipo={film.title}
+                titulo1="Diretores"
+                texto1={film.director}
+                titulo2="Data de Lançamento"
+                texto2={film.release_date}
+                titulo3="Produtores"
+                texto3={film.producer}
+                titulo4="Sinopse"
+                texto4={film.opening_crawl}
               />
-            </div>
-          ) : 
-           (
-           <div style={{ display: "contents" }}>
-                      {apiResponse.map((film) => (
-                      //
-
-                      <CardsModal
-                        key={film.episode_id}
-                        imagem={film.imagem}
-                        titulo={film.title}
-                        tipo={film.title}
-                        titulo1="Diretores"
-                        texto1={film.director}
-                        titulo2="Data de Lançamento"
-                        texto2={film.release_date}
-                        titulo3="Produtores"
-                        texto3={film.producer}
-                        titulo4="Sinopse"
-                        texto4={film.opening_crawl}
-                        
-                      />
-                    ))} 
-                    
-                    </div> 
-                
-
-          )
-        }
+            ))}
+          </div>
+        )}
       </Row>
     </Container>
   );

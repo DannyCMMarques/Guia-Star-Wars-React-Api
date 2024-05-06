@@ -10,14 +10,13 @@ const ApiAssistent = () => {
 
   const getListStarwars = useCallback(async () => {
     const currentPath = location.pathname.replace("/", "");
-    console.log(currentPath);
     try {
-      const response = await getStarWars(currentPath);        
+      const response = await getStarWars(currentPath);
       // setApiResponse(response?.data);
-      setIsLoading(false); 
+      setIsLoading(false);
     } catch (error) {
       console.log("Error fetching Star Wars data:", error);
-      setIsLoading(false); 
+      setIsLoading(false);
     }
   }, [getStarWars, location]);
 
@@ -25,10 +24,7 @@ const ApiAssistent = () => {
     getListStarwars();
   }, [getListStarwars]);
 
-  useEffect(() => {
-    console.log("esta funcionando");
-    console.log(apiResponse?.results);
-  }, [apiResponse?.results]);
+  useEffect(() => {}, [apiResponse?.results]);
 
   return { apiResponse, isLoading };
 };

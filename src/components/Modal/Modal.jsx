@@ -18,9 +18,7 @@ const ModalInfo = ({
   texto5,
   show,
   handleCloseModal,
-  filme1,
-  filme2,
-  filme3
+  filmes,
 }) => {
   const handleClose = () => {
     handleCloseModal();
@@ -84,27 +82,27 @@ const ModalInfo = ({
               </Card.Body>
             </Card>
           </Col>
-          <Col md={6}>
-          <Card className={styles.cartao1}>
+          <Col md={12} style={{ marginTop: 20 }}>
+            <Card className={styles.cartao1}>
               <Card.Header className={styles.headerCard}>
                 <h3> {titulo5}</h3>
               </Card.Header>
               <Card.Body className={styles.bodyCard}>
-                <img src={filme1}>
-                </img>
-                <img src={filme2}>
-                </img>
-                <img src={filme3}>
-                </img>
+                {filmes.map((filme) => (
+                  <p
+                    key={filme.episode_id}
+                    style={{ color: "white", textAlign: "center" }}
+                  >
+                    {filme.title}
+                  </p>
+                ))}
               </Card.Body>
             </Card>
-          
           </Col>
         </div>
       </Modal.Body>
       <Modal.Footer className={styles.cabeçalho}>
-        <button  onClick={handleCloseModal}>fechar</button>
-      <Button  onClick={handleCloseModal}>Close</Button>
+        <Button onClick={handleCloseModal}>Close</Button>
       </Modal.Footer>
     </Modal>
   );

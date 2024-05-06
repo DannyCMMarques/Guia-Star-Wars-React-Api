@@ -8,47 +8,35 @@ const MovieService = () => {
     console.log();
     try {
       const resposta = await axios.get(`${api}`);
-      // console.log('po',resposta)
       const novaResponse = {
         ...resposta,
         data: {
           ...resposta?.data,
           results: resposta?.data?.results.map((item) => ({
             ...item,
-            imagem: `${apiImage}/films/${item.url.replace("https://swapi.dev/api/films/","").replace('/',"")}.jpg`,
-            
+            imagem: `${apiImage}/films/${item.url
+              .replace("https://swapi.dev/api/films/", "")
+              .replace("/", "")}.jpg`,
           })),
         },
       };
 
       return novaResponse;
-      
     } catch (err) {
       console.error(err);
     }
   };
 
-
-
-
- const getStarWarsId = async (id) => {
+  const getStarWarsId = async (id) => {
     console.log();
     try {
       const resposta = await axios.get(`${id}`);
-      console.log("resposta dentro do service" + resposta)
-      return resposta
-      }catch (err) {
+      return resposta;
+    } catch (err) {
       console.error(err);
     }
   };
 
-
-
-
-
-
-
-  
   return { getStarWars, getStarWarsId };
 };
 

@@ -1,74 +1,68 @@
 .imagem {
-    align-items: baseline;
-    height: 280px;
-    width: 215px;
-    margin-top: 25px;
+  align-items: baseline;
+  height: 280px;
+  width: 215px;
+  margin-top: 25px;
 }
 
 .card {
-    margin: 20px auto 20px auto;
-    background-color: black;
-    height: 400px;
-    width: 290px;
-    display: grid;
-    justify-content: center;
-    justify-items: center;
-    border-radius: 15px;
-    border: 1px solid #cd9629;
-    cursor: pointer;
+  margin: 20px auto 20px auto;
+  background-color: black;
+  height: 400px;
+  width: 290px;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  border-radius: 15px;
+  border: 1px solid #cd9629;
+  cursor: pointer;
 }
 
 .card:hover {
-    border: 1px solid #f0c776;
+  border: 1px solid #f0c776;
 }
 
 .titulo {
-    text-align: center;
-    width: 285px;
-padding: 10px;
-    font-size: 20px;
-    font-family: "Star Wars", sans-serif;
-    color: yellow;
-    -webkit-text-stroke: 1px black;
-    text-shadow:
-        2px 2.5px 0 #bf3838,
-        -2px -2px 0 #7e2121,
-        2px -2px 0 #000,
-        -2px 2px 0 #000;
+  text-align: center;
+  width: 285px;
+  padding: 10px;
+  font-size: 20px;
+  font-family: "Star Wars", sans-serif;
+  color: yellow;
+  -webkit-text-stroke: 1px black;
+  text-shadow: 2px 2.5px 0 #bf3838, -2px -2px 0 #7e2121, 2px -2px 0 #000,
+    -2px 2px 0 #000;
 }
 
 .sessaoImagem {
-    display: flex;
-    align-items: center;
-    height: 300px;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 300px;
+  justify-content: center;
 }
 .sessaoTitulo {
 }
 .btn:hover {
-    font-size: 31px;
-    font-family: "Star Wars", sans-serif;
-    color: #cd9629;
-    box-shadow:
-        1px 1px 0 #bf3838,
-        -3px -2px 0 #7e2121,
-        2px -2px 0 #bf3838,
-        -2px 2px 0 #ffff00;
-    margin-top: 0px;
-    margin-left: 242px;
-    font-weight: bold;
-    background-color: #000;
-    border-radius: 100%;
+  font-size: 31px;
+  font-family: "Star Wars", sans-serif;
+  color: #cd9629;
+  box-shadow: 1px 1px 0 #bf3838, -3px -2px 0 #7e2121, 2px -2px 0 #bf3838,
+    -2px 2px 0 #ffff00;
+  margin-top: 0px;
+  margin-left: 242px;
+  font-weight: bold;
+  background-color: #000;
+  border-radius: 100%;
 }
 
 .btn {
-    font-size: 27px;
-    font-family: "Star Wars", sans-serif;
-    color: #cd9629;
-    margin-top: 0px;
-    margin-left: 242px;
-    font-weight: bold;
-    background-color: #000;
-    border-radius: 100%;
-    border: transparent;
+  font-size: 27px;
+  font-family: "Star Wars", sans-serif;
+  color: #cd9629;
+  margin-top: 0px;
+  margin-left: 242px;
+  font-weight: bold;
+  background-color: #000;
+  border-radius: 100%;
+  border: transparent;
 }

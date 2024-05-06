@@ -1,68 +1,60 @@
 import { useCallback, useEffect, useState } from "react";
 import CardsModal from "../../components/cards/cards";
-import { useLocation } from "react-router-dom";
 import PeopleService from "../../service/People/PeopleService";
-import { Container, Pagination, Row, Spinner } from "react-bootstrap";
+import { Container, Row, Spinner } from "react-bootstrap";
 import MovieService from "../../service/MovieService/MovieService";
-import { FileMusic } from "react-bootstrap-icons";
 
 const Personagem = () => {
   const { getStarWarsPeople } = PeopleService();
   const { getStarWarsId } = MovieService();
-  const [personagem, setPersonagem] = useState([
-    { teste: "teste1" },
-    "teste2",
-    "teste3",
-  ]);
-  const [filme, setFilme] = useState("");
+  const [personagens, setPersonagens] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  // const location = useLocation();
 
   const getPersonagemStarwars = useCallback(async () => {
     setIsLoading(true);
-    // const currentPath = location.pathname.replace("/", "");
-    // console.log(currentPath);
     try {
       const response = await getStarWarsPeople();
-      console.log(response);
+      setPersonagens(
+        response.data.results.map((personagem) => ({
+          ...personagem,
+          filmes: [],
+        }))
+      );
 
-      setPersonagem(response.data.results);
       if (response) {
-        personagem.forEach(Personagemfilme => {
-            Personagemfilme.films.forEach(filme => {
-                console.log("Filme:", filme);
-                getFilmsStarWars(filme)
-            });
+        response.data.results.forEach(async (personagemFilme) => {
+          const filmesDetalhes = await Promise.all(
+            personagemFilme.films.map(async (filmeUrl) => {
+              try {
+                const response = await getStarWarsId(filmeUrl);
+                return response.data;
+              } catch (err) {
+                console.log("Error fetching Star Wars data:", err);
+                return null;
+              }
+            })
+          );
+
+          setPersonagens((prevPersonagens) =>
+            prevPersonagens.map((personagem) => {
+              if (personagem.url === personagemFilme.url) {
+                return { ...personagem, filmes: filmesDetalhes };
+              }
+              return personagem;
+            })
+          );
         });
-    }
-      console.log(personagem);
+      }
     } catch (err) {
       console.log("Error fetching Star Wars data:", err);
     }
     setIsLoading(false);
-  }, [getStarWarsPeople]
-);
-
-  const getFilmsStarWars = useCallback(async (id) => {
-    try {
-      const response = await getStarWarsId(id);
-      console.log("resposta", response);
-      setFilme(response.data.results);
-      console.log(filme);
-    } catch (err) {
-      {
-        console.log("Error fetching Star Wars data:", err);
-      }
-    }
-  }, [getStarWarsId]);
-  
+  }, [getStarWarsPeople, getStarWarsId]);
 
   useEffect(() => {
     getPersonagemStarwars();
-    
   }, []);
 
-   
   return (
     <Container>
       <Row>
@@ -86,23 +78,22 @@ const Personagem = () => {
           </div>
         ) : (
           <div style={{ display: "contents" }}>
-            {personagem.map((item) => (
-              //
-
+            {personagens.map((personagem) => (
               <CardsModal
-                key={item.url}
-                imagem={item.imagem}
-                titulo={item.name}
-                tipo={item.name}
+                key={personagem.url}
+                imagem={personagem.imagem}
+                titulo={personagem.name}
+                tipo={personagem.name}
                 titulo1="Ano de Nascimento"
-                texto1={item.birth_year}
+                texto1={personagem.birth_year}
                 titulo2="Altura"
-                texto2={item.height}
+                texto2={personagem.height}
                 titulo3="Genero"
-                texto3={item.gender}
+                texto3={personagem.gender}
                 titulo4="skin_color"
-                texto4={item.skin_color}
+                texto4={personagem.skin_color}
                 titulo5="Filmes que participou"
+                filmes={personagem.filmes}
               />
             ))}
           </div>
