@@ -88,12 +88,12 @@ const ModalInfo = ({
                 <h3> {titulo5}</h3>
               </Card.Header>
               <Card.Body className={styles.bodyCard}>
-                {filmes.map((filme) => (
+                {filmes?.map((filme) => (
                   <p
-                    key={filme.episode_id}
+                    key={filme?.episode_id}
                     style={{ color: "white", textAlign: "center" }}
                   >
-                    {filme.title}
+                    {filme?.title}
                   </p>
                 ))}
               </Card.Body>

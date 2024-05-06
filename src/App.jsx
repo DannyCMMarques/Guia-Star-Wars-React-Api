@@ -3,7 +3,7 @@ import "./App.css";
 import Navegador from "./components/navbar/Navegador";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/HOME/Home";
-import Filme from "./pages/filmes/index";
+import Filme from "./pages/filmes/index"; 
 import Personagem from "./pages/Personagens/Personagem";
 function App() {
   return (
