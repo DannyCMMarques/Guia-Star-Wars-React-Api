@@ -4,8 +4,6 @@ import PeopleService from "../../service/People/PeopleService";
 import { Container, Row, Spinner } from "react-bootstrap";
 import MovieService from "../../service/MovieService/MovieService";
 import Modal2 from "../../components/Modal2";
-import CartaoImagem from "../../components/cartaoImagem/cartaoImagem";
-import Cartoes from "../../components/cartoes/cartoes";
 
 const Personagem = () => {
   const { getStarWarsPeople } = PeopleService();
@@ -58,13 +56,12 @@ const Personagem = () => {
   useEffect(() => {
     getPersonagemStarwars();
   }, []);
-  console.log(personagens);
- 
 
+console.log(personagens)
   return (
     <Container>
       <Row>
-        <Modal2/>
+        <Modal2 />
         {isLoading ? (
           <div>
             <Spinner
@@ -86,17 +83,12 @@ const Personagem = () => {
         ) : (
           <div style={{ display: "contents" }}>
             {personagens.map((personagem) => (
-                <CardsModal
-                  key={personagem.url}
-                  imagem={personagem.imagem}
-                  tituloCard={personagem.name}
-                 >
-              </CardsModal>
-                
-      
-          
+              <CardsModal
+              key={personagem.url}
+              imagem={personagem.imagem}
+              titulo={personagem.name}
+            />
             ))}
-           
           </div>
         )}
       </Row>

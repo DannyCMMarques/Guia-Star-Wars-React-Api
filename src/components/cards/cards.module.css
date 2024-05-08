@@ -40,8 +40,9 @@
   height: 300px;
   justify-content: center;
 }
-.sessaoTitulo {
-}
+
+.sessaoTitulo {}
+
 .btn:hover {
   font-size: 31px;
   font-family: "Star Wars", sans-serif;
