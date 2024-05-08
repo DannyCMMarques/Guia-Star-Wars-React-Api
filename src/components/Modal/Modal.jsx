@@ -82,6 +82,7 @@ const ModalInfo = ({
               </Card.Body>
             </Card>
           </Col>
+
           <Col md={12} style={{ marginTop: 20 }}>
             <Card className={styles.cartao1}>
               <Card.Header className={styles.headerCard}>
@@ -98,7 +99,7 @@ const ModalInfo = ({
                 ))}
               </Card.Body>
             </Card>
-          </Col>
+          </Col> 
         </div>
       </Modal.Body>
       <Modal.Footer className={styles.cabeçalho}>

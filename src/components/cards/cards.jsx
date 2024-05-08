@@ -3,33 +3,39 @@ import styles from "./cards.module.css";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import ModalInfo from "../Modal/Modal";
+import { Button } from "react-bootstrap";
+import ModalPersonagem from "../Modal/Filmes/ModalPersonagem";
+import Modal2 from "../Modal2";
+import ModalModelo from "../ModalModelo/ModalModelo";
+import Cartoes from './../cartoes/cartoes'
+import CartaoImagem from "./../cartaoImagem/cartaoImagem";
 const CardsModal = ({
-  titulo,
+  tituloCard,
   imagem,
-  tipo,
-  titulo1,
-  texto1,
-  titulo2,
-  texto2,
-  titulo3,
-  texto3,
-  titulo4,
-  texto4,
-  titulo5,
-  texto5,
-  filmes,
-  chave,
+  chave, 
+  tituloModal
+   
 }) => {
-  const [modalShow, setModalShow] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);  
+  
+  const handleOpenModal = () => {
+  
+    setModalOpen(true);
+  
+  }
+const handleCloseModal = () => {
+  console.log(modalOpen)
+  setModalOpen(false);
+  console.log(modalOpen)
 
-  const handleClose = () => setModalShow(false);
-  const handleShow = () => setModalShow(true);
 
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       Clique para obter mais informações!
     </Tooltip>
   );
+
+
 
   return (
     <OverlayTrigger
@@ -39,10 +45,11 @@ const CardsModal = ({
     >
       <div
         className={styles.card}
-        onClick={() => setModalShow(true)}
+        onClick={handleOpenModal }
         key={chave}
       >
-        <div>
+  
+        <div  onClick={handleOpenModal }>
           {/* <div>
           <OverlayTrigger
             placement="right"
@@ -58,28 +65,19 @@ const CardsModal = ({
             <img className={styles.imagem} src={imagem}></img>
           </div>
           <div className={styles.sessaoTitulo}>
-            <h1 className={styles.titulo}>{titulo}</h1>
+            <h1 className={styles.titulo}>{tituloCard}</h1>
           </div>
         </div>
-        <ModalInfo
-          tipo={tipo}
-          titulo1={titulo1}
-          texto1={texto1}
-          titulo2={titulo2}
-          texto2={texto2}
-          titulo3={titulo3}
-          texto3={texto3}
-          titulo4={titulo4}
-          texto4={texto4}
-          titulo5={titulo5}
-          texto5={texto5}
-          show={modalShow}
-          filmes={filmes}
-          handleCloseModal={handleClose}
-        />
+       {/* <Modal2 isOpen={modalOpen} size="small" onClose={handleCloseModal} titulo={tituloModal} >       
+         <Cartoes/>
+         <CartaoImagem/>
+        </Modal2>  */}
+         
+        
+
       </div>
     </OverlayTrigger>
   );
 };
-
+}
 export default CardsModal;

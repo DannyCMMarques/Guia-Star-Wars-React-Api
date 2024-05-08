@@ -90,6 +90,7 @@ const Filme = () => {
                 texto3={film.producer}
                 titulo4="Sinopse"
                 texto4={film.opening_crawl}
+                grupo="filme"
               />
             ))}
           </div>

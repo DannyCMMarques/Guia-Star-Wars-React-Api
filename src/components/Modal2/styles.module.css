@@ -1,0 +1,142 @@
+.modalContainer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(0 0 0 / 9%);
+  z-index: 9999999999;
+}
+
+.closeModal {
+  font-size: 40px;
+  height: 45px;
+  color: yellow;
+  -webkit-text-stroke: 1px black;
+  text-shadow:
+    2px 2.5px 0 #bf3838,
+    -2px -2px 0 #7e2121,
+    2px -2px 0 #000,
+    -2px 2px 0 #000;
+}
+.cabeçalho {
+  background-color: #000000f2;
+  border: 2px solid #cd9629;
+  height: 50px;
+}
+.body {
+  border-left: 2px solid #cd9629;
+  height: 350px;
+  border-right: 2px solid #cd9629;
+  background-color: #ffff00;
+}
+
+.tituloModal {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  font-family: "Star Wars", sans-serif;
+  color: yellow;
+  -webkit-text-stroke: 1px black;
+  text-shadow:
+    2px 2.5px 0 #bf3838,
+    -2px -2px 0 #7e2121,
+    2px -2px 0 #000,
+    -2px 2px 0 #000;
+}
+
+.modalContentS {
+  background: transparent;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.modalContentM {
+  background: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  padding: 25px;
+  border-radius: 3px;
+}
+
+.modalContentL {
+  background: rgb(10, 8, 8);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  padding: 25px;
+  border-radius: 3px;
+}
+
+@media (max-width: 414px) {
+  .containerCard {
+    background-size: cover;
+    color: white;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    margin-bottom: 5%;
+  }
+}
+
+@media (max-width: 430px) {
+  .modalContainer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999999999;
+  }
+
+  .modalContentS {
+    background: transparent;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    padding: 25px;
+    border-radius: 3px;
+  }
+
+  .modalContentM {
+    background: transparent;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    padding: 25px;
+    border-radius: 3px;
+  }
+
+  .modalContentL {
+    background: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    padding: 25px;
+    border-radius: 3px;
+  }
+}
+p {
+  margin: 0;
+}

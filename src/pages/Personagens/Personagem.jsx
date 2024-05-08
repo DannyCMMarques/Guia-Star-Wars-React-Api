@@ -3,6 +3,9 @@ import CardsModal from "../../components/cards/cards";
 import PeopleService from "../../service/People/PeopleService";
 import { Container, Row, Spinner } from "react-bootstrap";
 import MovieService from "../../service/MovieService/MovieService";
+import Modal2 from "../../components/Modal2";
+import CartaoImagem from "../../components/cartaoImagem/cartaoImagem";
+import Cartoes from "../../components/cartoes/cartoes";
 
 const Personagem = () => {
   const { getStarWarsPeople } = PeopleService();
@@ -27,6 +30,7 @@ const Personagem = () => {
             personagemFilme.films.map(async (filmeUrl) => {
               try {
                 const response = await getStarWarsId(filmeUrl);
+
                 return response.data;
               } catch (err) {
                 console.log("Error fetching Star Wars data:", err);
@@ -54,10 +58,13 @@ const Personagem = () => {
   useEffect(() => {
     getPersonagemStarwars();
   }, []);
+  console.log(personagens);
+ 
 
   return (
     <Container>
       <Row>
+        <Modal2/>
         {isLoading ? (
           <div>
             <Spinner
@@ -79,23 +86,17 @@ const Personagem = () => {
         ) : (
           <div style={{ display: "contents" }}>
             {personagens.map((personagem) => (
-              <CardsModal
-                key={personagem.url}
-                imagem={personagem.imagem}
-                titulo={personagem.name}
-                tipo={personagem.name}
-                titulo1="Ano de Nascimento"
-                texto1={personagem.birth_year}
-                titulo2="Altura"
-                texto2={personagem.height}
-                titulo3="Genero"
-                texto3={personagem.gender}
-                titulo4="skin_color"
-                texto4={personagem.skin_color}
-                titulo5="Filmes que participou"
-                filmes={personagem.filmes}
-              />
+                <CardsModal
+                  key={personagem.url}
+                  imagem={personagem.imagem}
+                  tituloCard={personagem.name}
+                 >
+              </CardsModal>
+                
+      
+          
             ))}
+           
           </div>
         )}
       </Row>
