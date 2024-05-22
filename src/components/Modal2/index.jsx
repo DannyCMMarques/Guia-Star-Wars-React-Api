@@ -1,9 +1,8 @@
-// Modal.js
 import { useState, useEffect } from "react";
-import styles from "./styles.module.css"
+import styles from "./styles.module.css";
 import { X } from "react-bootstrap-icons";
 
-const Modal2 = ({ isOpen, children, size, titulo, onClose,conteudo }) => {
+const Modal2 = ({ isOpen, children, size, titulo, onClose, conteudo }) => {
   const [modalOpen, setModalOpen] = useState(isOpen);
   useEffect(() => {
     setModalOpen(isOpen);
@@ -39,16 +38,10 @@ const Modal2 = ({ isOpen, children, size, titulo, onClose,conteudo }) => {
       <div className={contentClass}>
         <div className={` d-flex justify-content-between ${styles.cabeçalho}`}>
           <p className={styles.tituloModal}>{titulo}</p>
-           <X className={styles.closeModal} onClick={handleCloseModal} /> 
+          <X className={styles.closeModal} onClick={handleCloseModal} />
         </div>
-        <div className={styles.body }>  
-    
-          {children}
-
-        </div>
-        <div className={styles.cabeçalho}>
-
-        </div>
+        <div className={styles.body}>{children}</div>
+        <div className={styles.cabeçalho}></div>
       </div>
     </div>
   );

@@ -5,10 +5,8 @@ const MovieService = () => {
   const apiImage = "https://starwars-visualguide.com/assets/img";
 
   const getStarWars = async () => {
-    console.log();
     try {
       const resposta = await axios.get(`${api}`);
-      console.log(resposta);
       const novaResponse = {
         ...resposta,
         data: {
@@ -21,7 +19,6 @@ const MovieService = () => {
           })),
         },
       };
-      console.log(novaResponse);
       return novaResponse;
     } catch (err) {
       console.error(err);

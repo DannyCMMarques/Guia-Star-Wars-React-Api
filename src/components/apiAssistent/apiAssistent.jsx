@@ -12,7 +12,6 @@ const ApiAssistent = () => {
     const currentPath = location.pathname.replace("/", "");
     try {
       const response = await getStarWars(currentPath);
-      // setApiResponse(response?.data);
       setIsLoading(false);
     } catch (error) {
       console.log("Error fetching Star Wars data:", error);

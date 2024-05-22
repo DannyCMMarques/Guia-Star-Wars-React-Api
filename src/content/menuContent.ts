@@ -1,10 +1,6 @@
 import MenuProps from "../interfaces/MenuInterface";
 const MenuContents: MenuProps[] = [
-  {
-    id: 0,
-    href: "",
-    titulo: "Home",
-  },
+
   {
     id: 1,
     href: "/films",
@@ -20,5 +16,20 @@ const MenuContents: MenuProps[] = [
     href: "/planets",
     titulo: "Planetas",
   },
+  {
+    id: 4,
+    href: "/species",
+    titulo: "Espécies",
+  },
+  {
+    id: 5,
+    href: "/vehicles",
+    titulo: "Veículos",
+  },
+  {
+    id: 6,
+    href: "/starships",
+    titulo: "Naves",
+  }
 ];
 export default MenuContents;

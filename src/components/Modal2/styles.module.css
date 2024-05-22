@@ -25,10 +25,15 @@
   height: 50px;
 }
 .body {
+  display: flex;
   border-left: 2px solid #cd9629;
-  height: 350px;
+  height: 100%;
   border-right: 2px solid #cd9629;
-  background-color: #ffff00;
+  background-color: #9d9d9e;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .tituloModal {

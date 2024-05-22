@@ -1,34 +1,34 @@
 import axios from "axios";
 
-const PeopleService = () => {
-  const api = "https://swapi.dev/api/people/";
+const PlanetsService = () => {
+  const api = "https://swapi.dev/api/planets/";
   const apiImage = "https://starwars-visualguide.com/assets/img";
-  const getStarWarsPeople = async (page) => {
+  const getPlanets = async (page) => {
     try {
-      const resposta = await axios.get(`${api}?page=${page}`);
+      const resposta = await axios.get(`${api}/?page=${page}`);
       const novaResponse = {
         ...resposta,
         data: {
           ...resposta?.data,
           results: resposta?.data?.results.map((item) => ({
             ...item,
-            imagem: `${apiImage}/characters/${item.url
-              .replace("https://swapi.dev/api/people/", "")
+            imagem: `${apiImage}/planets/${item.url
+              .replace("https://swapi.dev/api/planets/", "")
               .replace("/", "")}.jpg`,
           })),
         },
       };
-
       return novaResponse;
     } catch (err) {
       console.error(err);
     }
   };
-  const getPeopleId = async (id) => {
+
+  const getPlanetsId = async (id) => {
     try {
       const resposta = await axios.get(`${id}`);
-      resposta.data.imagem = `${apiImage}/films/${id
-        .replace("https://swapi.dev/api/films/", "")
+      resposta.data.imagem = `${apiImage}/planets/${id
+        .replace("https://swapi.dev/api/planets/", "")
         .replace("/", "")}.jpg`;
       return resposta;
     } catch (err) {
@@ -36,7 +36,7 @@ const PeopleService = () => {
     }
   };
 
-  return { getStarWarsPeople, getPeopleId };
+  return { getPlanets, getPlanetsId };
 };
 
-export default PeopleService;
+export default PlanetsService;

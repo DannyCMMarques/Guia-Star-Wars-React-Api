@@ -1,0 +1,34 @@
+.paginação {
+    width: 56px;
+    border: 1px solid #495057;
+    padding: 5px;
+    margin: 0;
+    font-weight: bold;
+    cursor: pointer;
+    color: #6ea8fe;
+    background: #212529;
+    margin-right: 0.2em;
+    font-size: 20px;
+}
+
+ul {
+    display: inline-flex;
+    cursor: pointer;
+}
+.paginação:active,
+.paginação:focus {
+    background-color: #6ea8fe;
+    color: white;
+}
+li {
+    list-style: none;
+}
+
+.central {
+    justify-content: center;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
