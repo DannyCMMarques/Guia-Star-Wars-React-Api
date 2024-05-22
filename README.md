@@ -1,8 +1,6 @@
-# React + Vite
+  # Guia Star Wars - React 💻
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  #### Projeto em andamento que utiliza as informações fornecidas pela api do Star Wars para elaborar um guia sobre filmes, personagens, veiculos, naves,planetas do Star Wars .
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  ![giphy](https://github.com/DannyCMMarques/Star-wars-front/assets/147952313/4ca59d4f-56d6-4ac0-8af5-71fa51dc02fb)
