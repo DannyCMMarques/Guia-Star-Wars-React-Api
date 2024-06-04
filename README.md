@@ -45,5 +45,6 @@ O principal objetivo deste projeto é criar um guia completo sobre os filmes da 
 Sinta-se à vontade para compartilhar feedbacks, sugestões de melhorias e trocar aprendizados. O processo de desenvolvimento é contínuo, e estou sempre em busca de aprimoramento.
 
 🔗 [Meu LinkedIn](https://www.linkedin.com/in/danny-marques/)
+🔗 [ API Star Wars: ](https://swapi.dev/)
 
 🤍 Obrigada pela visita e pela oportunidade de compartilhar este projeto! 🤍
