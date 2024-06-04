@@ -1,7 +1,10 @@
 import React from "react";
 import PersonagemProps from "../interfaces/personagemInterface";
 
-const PersonagemContent = ({ ano, altura, peso, especie, planeta }: any): PersonagemProps[] => {
+const PersonagemContent = ({ ano, altura, peso, especie, planeta, imagemFilme,
+  veiculos,
+  naves,
+}: any): PersonagemProps[] => {
   const personagensCardContend: PersonagemProps[] = [
     {
       id: 1,
@@ -26,9 +29,19 @@ const PersonagemContent = ({ ano, altura, peso, especie, planeta }: any): Person
     {
       id: 5,
       titulo: "Planeta Natal",
-      conteudo: planeta
+      conteudo: planeta,
     },
 
+    {
+      id: 6,
+      titulo: "Veículos",
+      conteudo: veiculos,
+    },
+    {
+      id: 7,
+      titulo: "Naves",
+      conteudo: naves,
+    }
 
   ];
 

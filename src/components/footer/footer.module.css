@@ -1,0 +1,56 @@
+
+
+.sessao1 {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #B5B7B7;
+    font-size: 16px;
+    font-weight: 600;
+
+}
+
+.sessao2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 2px;
+    color: #B5B7B7;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.link {
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: all ease-in 0.1s;
+    font-weight: 600;
+
+
+
+}
+
+.icones a {
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+    transition: all ease-in 0.1s;
+    margin-left: 4px;
+    text-decoration: none;
+
+
+}
+
+.link:hover,
+.icones a :hover {
+    transition: all ease-in 0.1s;
+    box-shadow: 0px 0px 11px 6px #FADE4B;
+    color: white;
+    background: #d2ba3f;
+}

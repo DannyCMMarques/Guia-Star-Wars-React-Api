@@ -30,6 +30,10 @@ const Navegador = () => {
 
   return (
     <nav>
+      <Navbar.Brand as={Link} to="/" className={styles.titulo}>
+        <img className={styles.logo} src="./../../../logo.png" />
+      </Navbar.Brand>
+
       <Navbar
         collapseOnSelect
         expanded={expanded}
@@ -38,12 +42,10 @@ const Navegador = () => {
         className={styles.menu}
       >
         <Container fluid>
-          <Navbar.Brand as={Link} to="/" className={styles.titulo}>
-            <h1>Star Wars- Guia</h1>
-          </Navbar.Brand>
+          <br></br>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="ml-auto">
+            <Nav className="m-auto">
               {MenuContents.map((items) => (
                 <Nav.Link
                   key={items.id}

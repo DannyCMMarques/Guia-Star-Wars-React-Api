@@ -1,46 +1,34 @@
-import { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import { X } from "react-bootstrap-icons";
+import { useLocation } from "react-router-dom";
 
-const Modal2 = ({ isOpen, children, size, titulo, onClose, conteudo }) => {
-  const [modalOpen, setModalOpen] = useState(isOpen);
-  useEffect(() => {
-    setModalOpen(isOpen);
-  }, [isOpen]);
-
+const Modal2 = ({ isOpen, children,onClose }) => {
   const handleCloseModal = () => {
-    setModalOpen(false);
     if (onClose) {
       onClose();
     }
   };
 
-  let contentClass;
-  switch (size) {
-    case "small":
-      contentClass = styles.modalContentS;
-      break;
-    case "medium":
-      contentClass = styles.modalContentM;
-      break;
-    case "large":
-      contentClass = styles.modalContentL;
-      break;
-    default:
-      contentClass = styles.modalContent;
-  }
+  const location = useLocation();
+  const tipoPagina = location.pathname.replace("/", "");
 
   return (
     <div
       className={styles.modalContainer}
-      style={{ display: modalOpen ? "block" : "none" }}
+      style={{ display: isOpen ? "block" : "none" }}
     >
-      <div className={contentClass}>
+      <div
+        className={
+          tipoPagina === "films" ? styles.modalContent : styles.modalContent
+        }
+      >
         <div className={` d-flex justify-content-between ${styles.cabeçalho}`}>
-          <p className={styles.tituloModal}>{titulo}</p>
+          <p className={styles.tituloModal}></p>
           <X className={styles.closeModal} onClick={handleCloseModal} />
         </div>
-        <div className={styles.body}>{children}</div>
+        <div className={tipoPagina === "films" ? styles.body2 : styles.body}>
+          {children}
+        </div>
         <div className={styles.cabeçalho}></div>
       </div>
     </div>

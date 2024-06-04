@@ -1,15 +1,23 @@
 body {
-  background-image: url(https://i.pinimg.com/originals/6d/c1/17/6dc11726798611a9e2fa758a02188bf9.gif);
+  background:#000;
   -webkit-font-smoothing: antialiased;
 }
 
 .navbar-toggler {
-  background: #ffff00;
-  font-size: 10px;
+  margin-top: -115px;
+  background: #FADE4B;
+  font-size: 16px;
+  margin-right: 10px;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.text-danger {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
+  box-shadow: 0px 0px 11px 6px #FADE4B;
 }

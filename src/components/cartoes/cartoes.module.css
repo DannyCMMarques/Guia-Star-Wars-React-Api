@@ -3,8 +3,9 @@ h3 {
   font-weight: 500;
   text-align: center;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 13px;
 }
+
 .texto,
 .texto2 {
   font-family: "Roboto", sans-serif;
@@ -13,9 +14,11 @@ h3 {
   text-align: center;
   color: white;
 }
+
 .texto {
   font-size: 14px;
 }
+
 .texto2 {
   font-size: 13px;
 }
@@ -26,11 +29,13 @@ h3 {
 }
 
 .headerCard {
+  display: flex;
   font-weight: 600;
+  height: 42px;
   border-color: #cd9629;
   background-color: #1e2023;
-  width: 100%;
   text-align: center;
+  justify-content: center;
 }
 
 .bodyCard {
@@ -42,12 +47,38 @@ h3 {
 }
 
 .cartao {
-  width: 280px;
-  height: 100px;
+  width: 155px;
+  height: 87px;
   margin-right: 10px;
   margin-left: 10px;
   margin-bottom: 18px;
   padding-top: 10px;
   border: none;
   background-color: transparent;
+}
+
+.cartao2 {
+  margin-top: 10px;
+  width: 155px;
+  height: 87px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 25px;
+  padding-top: 0px;
+  border: none;
+  background-color: transparent;
+}
+
+
+@media (max-width: 435px) {
+  .cartao {
+    width: 155px;
+    height: 87px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border: none;
+    background-color: transparent;
+    margin-top: -10px;
+  }
+
 }

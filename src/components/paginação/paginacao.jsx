@@ -1,20 +1,26 @@
 import { useState } from "react";
 import styles from "./paginacao.module.css";
-import { ChevronDoubleRight } from "react-bootstrap-icons";
-import { ChevronDoubleLeft } from "react-bootstrap-icons";
+import { ChevronDoubleRight, ChevronDoubleLeft } from "react-bootstrap-icons";
 
 const PaginacaoPersonagem = ({ onPageChange, totalPages }) => {
   const [page, setPage] = useState(1);
+
   const onPageAnterior = () => {
     if (page !== 1) {
-      setPage(page - 1);
-    } else setPage(1);
+      const newPage = page - 1;
+      setPage(newPage);
+      onPageChange(newPage);
+    }
   };
+
   const onPageSeguinte = () => {
     if (page !== totalPages) {
-      setPage(page + 1);
-    } else setPage(totalPages);
+      const newPage = page + 1;
+      setPage(newPage);
+      onPageChange(newPage);
+    }
   };
+
   const handlePage = (pageNumber) => {
     setPage(pageNumber);
     onPageChange(pageNumber);
@@ -37,7 +43,11 @@ const PaginacaoPersonagem = ({ onPageChange, totalPages }) => {
             <button
               type="button"
               onClick={() => handlePage(index + 1)}
-              className={styles.paginação}
+              className={
+                page === index + 1
+                  ? `${styles.paginação} ${styles.active}`
+                  : styles.paginação
+              }
             >
               {index + 1}
             </button>

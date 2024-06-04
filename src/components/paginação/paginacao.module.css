@@ -5,21 +5,48 @@
     margin: 0;
     font-weight: bold;
     cursor: pointer;
-    color: #6ea8fe;
+    color: #d2ba3f;
     background: #212529;
     margin-right: 0.2em;
     font-size: 20px;
+    transition: all ease-in 0.1s;
+}
+
+.paginação2 {
+    width: 56px;
+    border: 1px solid #495057;
+    padding: 5px;
+    margin: 0;
+    font-weight: bold;
+    cursor: pointer;
+    color: #d2ba3f;
+    background: #212529;
+    margin-right: 0.2em;
+    font-size: 20px;
+    transition: all ease-in 0.1s;
+}
+
+.paginação:hover,
+.paginação2:hover {
+    transition: all ease-in 0.1s;
+    box-shadow: 0px 0px 11px 6px #FADE4B;
+    color: #212529;
+    background: #d2ba3f;
 }
 
 ul {
     display: inline-flex;
     cursor: pointer;
+    padding: 0;
 }
+
 .paginação:active,
 .paginação:focus {
-    background-color: #6ea8fe;
-    color: white;
+    box-shadow: 0px 0px 11px 6px #FADE4B;
+    color: #212529;
+    background: #d2ba3f;
 }
+
 li {
     list-style: none;
 }
@@ -31,4 +58,34 @@ li {
     align-content: center;
     align-items: center;
     margin-top: 50px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .paginação {
+        width: 40px;
+        padding: 4px;
+        font-size: 16px;
+    }
+
+    .central {
+        flex-wrap: wrap;
+    }
+
+    ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .paginação {
+        margin-bottom: 20px;
+        height: 40px;
+        width: 40px;
+        padding: 3px;
+        font-size: 14px;
+        margin-right: 0.1em;
+    }
+
 }

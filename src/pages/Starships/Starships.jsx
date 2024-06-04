@@ -1,18 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
-import CardsModal from "../../components/cards/cards";
-import PeopleService from "../../service/People/PeopleService";
-import { Container, Row, Spinner } from "react-bootstrap";
+import CardsModal from "../../components/cards/cards2";
+import { Container, Row } from "react-bootstrap";
 import MovieService from "../../service/MovieService/MovieService";
-import Modal2 from "../../components/Modal2";
 import PaginacaoPersonagem from "../../components/paginação/paginacao";
-import PlanetsService from "../../service/Planet/PlanetsService";
 import StarshipsService from "./../../service/starships/StarshipsService";
-import styles from "./styles.module.css";
+import Loading from "../../components/loading";
+import Seo from './../../tools/Seo'
 
 const Starships = () => {
   const { getStarships } = StarshipsService();
-  const { getPlanets } = PlanetsService();
-  const { getStarWarsPeople } = PeopleService();
   const { getStarWarsId } = MovieService();
 
   const [naves, setNaves] = useState([]);
@@ -23,38 +19,7 @@ const Starships = () => {
       setIsLoading(true);
       try {
         const response = await getStarships(page);
-        setNaves(
-          response.data.results.map((naves) => ({
-            ...naves,
-            filmes: [],
-          }))
-        );
-        console.log(page);
-        if (response) {
-          response.data.results.forEach(async (navesFilme) => {
-            const filmesDetalhes = await Promise.all(
-              navesFilme.films.map(async (filmeUrl) => {
-                try {
-                  const response = await getStarWarsId(filmeUrl);
-
-                  return response.data;
-                } catch (err) {
-                  console.log("Error fetching Star Wars data:", err);
-                  return null;
-                }
-              })
-            );
-
-            setNaves((prevNaves) =>
-              prevNaves.map((naves) => {
-                if (naves.url === navesFilme.url) {
-                  return { ...naves, filmes: filmesDetalhes };
-                }
-                return naves;
-              })
-            );
-          });
-        }
+        setNaves(response.data.results);
       } catch (err) {
         console.log("Error fetching Star Wars data:", err);
       }
@@ -68,33 +33,29 @@ const Starships = () => {
   }, []);
   return (
     <Container>
+      <Seo title="Naves"/>
       <Row>
-        <Modal2 />
         {isLoading ? (
           <div>
-            <Spinner
-              animation="border"
-              variant="danger"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "200px",
-                height: "200px",
-                margin: "auto",
-                marginTop: "auto",
-                // height:"100vh",
-                // width:"100vw"
-              }}
-            />
+            <Loading />
           </div>
         ) : (
           <div style={{ display: "contents" }}>
-            {naves.map((naves) => (
+            {naves.map((nave) => (
               <CardsModal
-                key={naves.url}
-                imagem={naves.imagem}
-                titulo={naves.name}
+                key={nave.url}
+                imagem={nave.imagem}
+                titulo={nave.name}
+                mgp={nave.MGLT}
+                capacidade={nave.cargo_capacity}
+                creditos={nave.cost_in_credits}
+                tripulacao={nave.crew}
+                hiperpropulsor={nave.hyperdrive_rating}
+                comprimento={nave.length}
+                fabricante={nave.manufacturer}
+                modelo={nave.model}
+                passageiros={nave.passengers}
+                classificacao={nave.starship_class}
               />
             ))}
           </div>

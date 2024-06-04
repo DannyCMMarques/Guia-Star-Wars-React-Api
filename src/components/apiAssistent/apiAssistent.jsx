@@ -23,7 +23,7 @@ const ApiAssistent = () => {
     getListStarwars();
   }, [getListStarwars]);
 
-  useEffect(() => {}, [apiResponse?.results]);
+  useEffect(() => { }, [apiResponse?.results]);
 
   return { apiResponse, isLoading };
 };

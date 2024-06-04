@@ -1,14 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
-import CardsModal from "../../components/cards/cards";
+import CardsModal from "../../components/cards/cards2";
 import PeopleService from "../../service/People/PeopleService";
 import { Container, Row, Spinner } from "react-bootstrap";
 import MovieService from "../../service/MovieService/MovieService";
-import Modal2 from "../../components/Modal2";
-import { Link } from "react-bootstrap-icons";
 import PaginacaoPersonagem from "../../components/paginação/paginacao";
-import PlanetsService from "../../service/Planet/PlanetsService";
-import styles from "./styles.module.css";
 import SpeciesService from "../../service/Species/SpeciesService";
+import Loading from "../../components/loading";
+import Seo from './../../tools/Seo'
 
 const Species = () => {
   const { getSpecies } = SpeciesService();
@@ -24,36 +22,7 @@ const Species = () => {
       try {
         const response = await getSpecies(page);
         setEspecies(
-          response.data.results.map((especies) => ({
-            ...especies,
-            filmes: [],
-          }))
-        );
-        if (response) {
-          response.data.results.forEach(async (especieFilme) => {
-            const filmesDetalhes = await Promise.all(
-              especieFilme.films.map(async (filmeUrl) => {
-                try {
-                  const response = await getStarWarsId(filmeUrl);
-
-                  return response.data;
-                } catch (err) {
-                  console.log("Error fetching Star Wars data:", err);
-                  return null;
-                }
-              })
-            );
-
-            setEspecies((prevEspecies) =>
-              prevEspecies.map((especies) => {
-                if (especies.url === especieFilme.url) {
-                  return { ...especies, filmes: filmesDetalhes };
-                }
-                return especies;
-              })
-            );
-          });
-        }
+          response.data.results)
       } catch (err) {
         console.log("Error fetching Star Wars data:", err);
       }
@@ -68,31 +37,30 @@ const Species = () => {
 
   return (
     <Container>
+      <Seo
+        title="Especies"
+      />
       <Row>
-        <Modal2 />
         {isLoading ? (
           <div>
-            <Spinner
-              animation="border"
-              variant="danger"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "200px",
-                height: "200px",
-                margin: "auto",
-                marginTop: "auto",
-              }}
+            <Loading
             />
           </div>
         ) : (
           <div style={{ display: "contents" }}>
-            {especies.map((especies) => (
+            {especies.map((especie) => (
               <CardsModal
-                key={especies.url}
-                imagem={especies.imagem}
-                titulo={especies.name}
+                key={especie.url}
+                imagem={especie.imagem}
+                titulo={especie.name}
+                alturaMedia={especie.average_height}
+                     expectativaVida={especie.average_lifespan}
+                      classificacao2={especie.classification}
+                       denominacao={especie.designation}
+                        coresOlhos={especie.eye_colors}
+                        coresCabelos={especie.hair_colors}
+                        linguagem={especie.language}
+                          coresPele={especie.skin_colors}
               />
             ))}
           </div>

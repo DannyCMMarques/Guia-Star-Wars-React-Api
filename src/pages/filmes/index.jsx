@@ -1,16 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
-import CardsModal from "../../components/cards/cards";
-import PeopleService from "../../service/People/PeopleService";
+import CardsModal from "../../components/cards/cards2";
 import { Container, Row, Spinner } from "react-bootstrap";
 import MovieService from "../../service/MovieService/MovieService";
-import Modal2 from "../../components/Modal2";
 import PlanetService from "./../../service/Planet/PlanetsService";
 import SpeciesService from "./../../service/Species/SpeciesService";
 import StarshipsService from "./../../service/starships/StarshipsService";
 import VehiclesService from "./../../service/Vehicles/VehicleService";
-import PaginacaoPersonagem from "../../components/paginação/paginacao";
-import { Col } from "react-bootstrap";
-import styles from "./index.module.css";
+import Loading from "../../components/loading";
+import Seo from './../../tools/Seo'
 const Filme = () => {
   const { getStarWars } = MovieService();
   const [apiResponse, setApiResponse] = useState();
@@ -85,6 +82,7 @@ const Filme = () => {
             veiculos: veiculosDetalhes,
           };
         })
+
       );
 
       setFilmes(filmsModificado);
@@ -99,22 +97,11 @@ const Filme = () => {
   }, []);
   return (
     <Container>
+        <Seo title="Filmes"/>
       <Row>
         {isLoading ? (
           <div>
-            <Spinner
-              animation="border"
-              variant="danger"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "200px",
-                height: "200px",
-                margin: "auto",
-                marginTop: "auto",
-              }}
-            />
+            <Loading />
           </div>
         ) : (
           <div style={{ display: "contents" }}>
@@ -125,46 +112,30 @@ const Filme = () => {
                 titulo={film.title}
                 diretor={film.director}
                 dataLanc={film.release_date}
-                planetas={
-                  <div className={styles.lista}>
-                    {film.planetas.map((planet, index) => (
-                      <span key={planet.url}>
-                        {planet.name}
-                        {index !== film.planetas.length - 1 && ", "}
-                      </span>
-                    ))}
-                  </div>
-                }
-                especies={
-                  <ul className={styles.lista}>
-                    {film.especies.map((especie, index) => (
-                      <span key={especie.url}>
-                        {especie.name}
-                        {index !== film.planetas.length - 1 && ", "}
-                      </span>
-                    ))}
-                  </ul>
-                }
-                naves={
-                  <ul className={styles.lista}>
-                    {film.naves.map((naves, index) => (
-                      <span key={naves.url}>
-                        {naves.name}
-                        {index !== film.planetas.length - 1 && ", "}
-                      </span>
-                    ))}
-                  </ul>
-                }
-                veiculos={
-                  <ul className={styles.lista}>
-                    {film.veiculos.map((veiculos, index) => (
-                      <span key={veiculos.url}>
-                        {veiculos.name}
-                        {index !== film.planetas.length - 1 && ", "}
-                      </span>
-                    ))}
-                  </ul>
-                }
+                planetas={ film.planetas.slice(0, 3).map((planet, index, array) => (
+                  <span style={{ color: "white" }} key={index}>
+                    {planet.name}
+                    {index !== array.length - 1 ? ", " : (film.planetas.length > 5 ? "..." : ".")}
+                  </span>
+                ))}
+                especies={ film.especies.slice(0, 4).map((especie, index, array) => (
+                  <span style={{ color: "white" }} key={index}>
+                    {especie.name}
+                    {index !== array.length - 1 ? ", " : (film.especies.length > 15 ? "..." : ".")}
+                  </span>
+                ))}
+                naves={film.naves.slice(0, 3).map((nave, index, array) => (
+                  <span style={{ color: "white" }} key={index}>
+                    {nave.name}
+                    {index !== array.length - 1 ? ", " : (film.naves.length > 6 ? "..." : ".")}
+                  </span>
+                ))}
+                veiculos={film.veiculos.slice(0, 3).map((veiculo, index, array) => (
+                  <span style={{ color: "white" }} key={index}>
+                    {veiculo.name}
+                    {index !== array.length - 1 ? ", " : (film.veiculos.length > 7 ? "..." : ".")}
+                  </span>
+                ))}
               />
             ))}
           </div>

@@ -1,16 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
-import CardsModal from "../../components/cards/cards";
+import CardsModal from "../../components/cards/cards2";
 import PeopleService from "../../service/People/PeopleService";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
-import Modal2 from "../../components/Modal2";
-import styles from "./Personagem.module.css";
-import { Link } from "react-bootstrap-icons";
 import PaginacaoPersonagem from "../../components/paginação/paginacao";
 import SpeciesService from "../../service/Species/SpeciesService";
 import StarshipsService from "../../service/starships/StarshipsService";
 import MovieService from "../../service/MovieService/MovieService";
 import VehiclesService from "../../service/Vehicles/VehicleService";
 import PlanetService from "./../../service/Planet/PlanetsService";
+import Loading from "../../components/loading";
+import Seo from "./../../tools/Seo";
+
 const Personagem = () => {
   const { getStarWarsPeople } = PeopleService();
   const { getStarWarsId } = MovieService();
@@ -109,23 +109,11 @@ const Personagem = () => {
 
   return (
     <Container>
+      <Seo title="Personagens" />
       <Row>
-        <Modal2 />
         {isLoading ? (
           <div>
-            <Spinner
-              animation="border"
-              variant="danger"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "200px",
-                height: "200px",
-                margin: "auto",
-                marginTop: "auto",
-              }}
-            />
+            <Loading />
           </div>
         ) : (
           <div style={{ display: "contents" }}>
@@ -137,52 +125,55 @@ const Personagem = () => {
                 ano={personagem.birth_year}
                 peso={personagem.mass + "" + " Kg"}
                 altura={personagem.height / 100 + "" + " Metros"}
-                imagemFilme={personagem.filmes.map((film, index) => (
-                  <a href="/films" key={index}>
-                    <img
-                      src={film.imagem}
-                      alt={film.titulo}
-                      className={styles.tamanhoImagem}
-                    />
-                  </a>
-                ))}
-                naves={personagem.naves.map((nave, index) => (
-                  <a href="/starships" key={index}>
-                    <img
-                      src={nave.imagem}
-                      alt={nave.name}
-                      className={styles.tamanhoImagem}
-                    />
-                  </a>
-                ))}
+                naves={
+                  personagem.naves.length === 0 ? (
+                    <p style={{ color: "white", textAlign: "center" }}>
+                      Não possui naves{" "}
+                    </p>
+                  ) : (
+                    personagem.naves.map((nave, index,array) => (
+                      <span style={{ color: "white" }} key={index}>
+                      {nave.name}
+                      {index !== array.length - 1 ? ", " : "."}
+                    </span>                    ))
+                  )
+                }
                 planeta={personagem.planetas.name}
                 especie={
                   personagem.especies.length === 0
                     ? "Humano"
-                    : personagem.especies.map((especie) => (
-                        <ul key={especie.name}>
-                          <li>{especie.name}</li>
-                        </ul>
+                    : personagem.especies.map((especie, index, array) => (
+                        <span style={{ color: "white" }} key={index}>
+                          {especie.name}
+                          {index !== array.length - 1 ? ", " : "."}
+                        </span>
                       ))
                 }
-                veiculos={personagem.veiculos.map((veiculo, index) => (
-                  <a href="/starships" key={index}>
-                    <img
-                      src={veiculo.imagem}
-                      alt={veiculo.name}
-                      className={styles.tamanhoImagem}
-                    />
-                  </a>
-                ))}
+                veiculos={
+                  personagem.veiculos.length === 0 ? (
+                    <p style={{ color: "white", textAlign: "center" }}>
+                      Não possui veículos{" "}
+                    </p>
+                  ) : (
+                    personagem.veiculos.map((veiculo, index, array) => (
+                      <span style={{ color: "white" }} key={index}>
+                        {veiculo.name}
+                        {index !== array.length - 1 ? ", " : "."}
+                      </span>
+                    ))
+                  )
+                }
               />
             ))}
           </div>
         )}
       </Row>
-      <PaginacaoPersonagem
-        onPageChange={getPersonagemStarwars}
-        totalPages={10}
-      />
+      {!isLoading ? (
+        <PaginacaoPersonagem
+          onPageChange={getPersonagemStarwars}
+          totalPages={10}
+        />
+      ) : null}
     </Container>
   );
 };

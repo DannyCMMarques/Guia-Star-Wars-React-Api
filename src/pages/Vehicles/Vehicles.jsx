@@ -1,15 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
-import CardsModal from "../../components/cards/cards";
-import PeopleService from "../../service/People/PeopleService";
+import CardsModal from "../../components/cards/cards2";
 import { Container, Row, Spinner } from "react-bootstrap";
 import MovieService from "../../service/MovieService/MovieService";
-import Modal2 from "../../components/Modal2";
-import PlanetService from "./../../service/Planet/PlanetsService";
-import SpeciesService from "./../../service/Species/SpeciesService";
-import StarshipsService from "./../../service/starships/StarshipsService";
 import VehiclesService from "./../../service/Vehicles/VehicleService";
 import PaginacaoPersonagem from "../../components/paginação/paginacao";
-import styles from "./styles.module.css";
+import Loading from "../../components/loading";
+import Seo from "./../../tools/Seo";
+
 const Vehicles = () => {
   const { getVehicles } = VehiclesService();
   const [veiculos, setVeiculos] = useState([]);
@@ -21,38 +18,7 @@ const Vehicles = () => {
       setIsLoading(true);
       try {
         const response = await getVehicles(page);
-        setVeiculos(
-          response.data.results.map((veiculos) => ({
-            ...veiculos,
-            filmes: [],
-          }))
-        );
-
-        if (response) {
-          response.data.results.forEach(async (veiculosFilme) => {
-            const filmesDetalhes = await Promise.all(
-              veiculosFilme.films.map(async (filmeUrl) => {
-                try {
-                  const response = await getStarWarsId(filmeUrl);
-
-                  return response.data;
-                } catch (err) {
-                  console.log("Error fetching Star Wars data:", err);
-                  return null;
-                }
-              })
-            );
-
-            setVeiculos((prevVeiculos) =>
-              prevVeiculos.map((veiculos) => {
-                if (veiculos.url === veiculosFilme.url) {
-                  return { ...veiculos, filmes: filmesDetalhes };
-                }
-                return veiculos;
-              })
-            );
-          });
-        }
+        setVeiculos(response.data.results);
       } catch (err) {
         console.log("Error fetching Star Wars data:", err);
       }
@@ -66,31 +32,35 @@ const Vehicles = () => {
   }, []);
   return (
     <Container>
+      <Seo title=" Veículos" />
       <Row>
-        <Modal2 />
         {isLoading ? (
           <div>
-            <Spinner
-              animation="border"
-              variant="danger"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "200px",
-                height: "200px",
-                margin: "auto",
-                marginTop: "auto",
-              }}
-            />
+            <Loading />
           </div>
         ) : (
           <div style={{ display: "contents" }}>
-            {veiculos.map((veiculos) => (
+            {veiculos.map((veiculo) => (
               <CardsModal
-                key={veiculos.url}
-                imagem={veiculos.imagem}
-                titulo={veiculos.name}
+                key={veiculo.url}
+                imagem={veiculo.imagem}
+                titulo={veiculo.name}
+                capacidade={veiculo.cargo_capacity}
+                creditos={veiculo.cost_in_credits}
+                comprimento={veiculo.length}
+                fabricante={
+                  <span
+                    style={{
+                      fontSize: veiculo.manufacturer.length >= 27 ? 12 : 14,
+                    }}
+                  >
+                    {veiculo.manufacturer}
+                  </span>
+                }
+                velocidade={veiculo.max_atmosphering_speed}
+                modelo={veiculo.model}
+                passageiros={veiculo.passengers + " " + "passageiro"}
+                classe={veiculo.vehicle_class}
               />
             ))}
           </div>
